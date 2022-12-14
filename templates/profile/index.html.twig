@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block body %}
+    <h2 class="mx-2 mt-2">Mes ordinateurs</h2>
+
+    <div class="container d-flex flex-wrap gap-2 justify-content-center">
+        {% for computer in computers %}    
+                <div class="card mt-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ computer.img }}" class="img-fluid rounded-start m-2" alt="...">
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body pe-5">
+                                <h5 class="card-title">{{ computer.model }}</h5>
+                                <p class="card-text">{{ computer.description|u.truncate(50, '...') }}</p>
+                                <p class="card-text">
+                                    <small class="text-muted">{{ computer.year }}</small>
+                                    <a href="{{path('app_computer_show', {'id' : computer.id}) }}" class="btn btn-primary mx-2 text-align-end">Détails</a>
+                                </p> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="mx-2 mt-2">Mes favoris</h2>
+
+    <div class="container d-flex flex-wrap gap-2 justify-content-center">
+        {% for computer in annoncesFav %}    
+                <div class="card mt-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ computer.computers.img }}" class="img-fluid rounded-start m-2" alt="...">
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body pe-5">
+                                <h5 class="card-title">{{ computer.computers.model }}</h5>
+                                <p class="card-text">{{ computer.computers.description|u.truncate(50, '...') }}</p>
+                                <p class="card-text">
+                                    <small class="text-muted">{{ computer.computers.year }}</small>
+                                    <a href="{{path('app_computer_show', {'id' : computer.computers.id}) }}" class="btn btn-primary mx-2 text-align-end">Détails</a>
+                                </p>
+                                <a type="button" class="btn btn-outline-light w-30" href="{{path('app_computer_fav', {'id' : computer.computers.id}) }}">
+                                    <img class="favoris" src="/images_directory/etoile-pleine.png" alt="etoile pleine">
+                                </a> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

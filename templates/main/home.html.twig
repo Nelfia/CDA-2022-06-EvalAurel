@@ -3,25 +3,54 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+<div class="container mt-4">
+    <h2 class="text-center">L'ordinateur de vos rêves est à portée de clic... Saisissez-le !</h2>
 
-<div class="container">
-    <div class="card mt-3" style="max-width: 540px;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="https://boulanger.scene7.com/is/image/Boulanger/4711081894018_h_f_l_0?wid=220&hei=220" class="img-fluid rounded-start m-2" alt="...">
-            </div>
+    {% include "components/menu.html.twig" %}
 
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">Ordinateur portable ASUS S712JA-BX769W</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                    <p class="card-text">
-                        <small class="text-muted">Last updated 3 mins ago</small>
-                        <a href="#" class="btn btn-primary mx-2 end">Détails</a></p> 
-                </div>
-            </div>
+    {% if app.user %}
+        <div class="d-flex justify-content-center mt-2">
+            <a type="button" class="btn btn-success btn-sm" href="/computer/new">Ajouter un ordinateur</a>
         </div>
+        
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="d-flex justify-content-center gap-2 mt-2">
+                <a href="/computer" type="button" class="btn btn-warning btn-sm">Liste des ordinateurs</a>
+                <a href="/admin/brand" type="button" class="btn btn-warning btn-sm">Liste des marques</a>
+            </div>
+        {% endif %}
+    {% endif %}
+
+    <div class="container d-flex flex-wrap gap-2 justify-content-center">
+        {% for computer in computers %}    
+                <div class="card mt-3" style="max-width: 540px;">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ computer.img }}" class="img-fluid rounded-start m-2" alt="...">
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body pe-5">
+                                <h5 class="card-title">{{ computer.model }}</h5>
+                                <p class="card-text">{{ computer.description|u.truncate(50, '...') }}</p>
+                                <p class="card-text">
+                                    <small class="text-muted">{{ computer.year }}</small>
+                                    <a href="{{path('app_computer_show', {'id' : computer.id}) }}" class="btn btn-primary mx-2 text-align-end">Détails</a>
+                                </p> 
+                                {% if app.user %}
+                                    <a type="button" class="btn btn-outline-light w-30" href="{{path('app_computer_fav', {'id' : computer.id}) }}">
+                                        {% if computer.isUserFav(app.user) %}
+                                            <img class="favoris" src="/images_directory/etoile-pleine.png" alt="etoile pleine">
+                                        {% else %}
+                                            <img class="favoris" src="/images_directory/etoile-vide.png" alt="etoile vide">
+                                        {% endif %}
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
     </div>
-</div>
 
 {% endblock %}

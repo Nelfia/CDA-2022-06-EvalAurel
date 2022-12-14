@@ -1,21 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Computer index{% endblock %}
+{% block title %}Liste des ordinateurs{% endblock %}
 
 {% block body %}
-    <h1>Computer index</h1>
+    <h1>Liste des ordinateurs</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Model</th>
+                <th>Modèle</th>
                 <th>Description</th>
-                <th>Price</th>
-                <th>Year</th>
-                <th>Sin</th>
+                <th>Prix</th>
+                <th>Année</th>
+                <th>SIN</th>
                 <th>Img</th>
-                <th>actions</th>
+                <th>Auteur</th>
+                <th>Visible</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +30,8 @@
                 <td>{{ computer.year }}</td>
                 <td>{{ computer.sin }}</td>
                 <td>{{ computer.img }}</td>
+                <td>{{ computer.author.username }}</td>
+                <td>{{ computer.isVisible ? "YES":"NO" }}</td>
                 <td>
                     <a href="{{ path('app_computer_show', {'id': computer.id}) }}">show</a>
                     <a href="{{ path('app_computer_edit', {'id': computer.id}) }}">edit</a>

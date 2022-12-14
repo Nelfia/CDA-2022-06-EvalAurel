@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h2 class="text-center">L'ordinateur de vos rêves est à portée de clic... Saisissez-le !</h2>
+
+        {% include "components/menu.html.twig" %}
+
+        {% for computer in brand.computers %}    
+            {% if computer.isVisible %}
+                <div class="container d-flex flex-column align-items-center">
+                    <div class="card mt-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ computer.img }}" class="img-fluid rounded-start m-2" alt="...">
+                            </div>
+
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ computer.model }}</h5>
+                                    <p class="card-text">{{ computer.description|u.truncate(50, '...') }}<p class="card-text"></p>
+                                    <small class="text-muted">{{ computer.year }}</small>
+                                    <a href="{{path('app_computer_show', {'id' : computer.id}) }}" class="btn btn-primary mx-2 end">Détails</a></p> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

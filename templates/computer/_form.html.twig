@@ -1,13 +1,12 @@
-<div class="container">
+<div class="container w-80">
     {{ form_start(form) }}
-        <div class="col">{{ form_row(form.model) }}</div>
-        <div class="col">{{ form_row(form.description) }}</div>
-        <div class="col">{{ form_row(form.price) }}</div>
-        <div class="col">{{ form_row(form.year) }}</div>
-        <div class="col">{{ form_row(form.sin) }}</div>
-        <div class="col">{{ form_row(form.img) }}</div>
-        <div class="col">{{ form_row(form.brand) }}</div>
+        <div class="col m-3">{{ form_row(form.model) }}</div>
+        <div class="col m-3">{{ form_row(form.description) }}</div>
+        <div class="col m-3">{{ form_row(form.price) }}</div>
+        <div class="col m-3">{{ form_row(form.year) }}</div>
+        <div class="col m-3">{{ form_row(form.img) }}</div>
+        <div class="col m-3">{{ form_row(form.brand) }}</div>
 
-        <button class="btn">{{ button_label|default('Save') }}</button>
+        <button class="btn btn-outline-success">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
 </div>

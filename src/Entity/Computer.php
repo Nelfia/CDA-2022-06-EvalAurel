@@ -194,7 +194,7 @@ class Computer
         return $this;
     }
 
-    public function isIsVisible(): ?bool
+    public function getIsVisible(): ?bool
     {
         return $this->isVisible;
     }

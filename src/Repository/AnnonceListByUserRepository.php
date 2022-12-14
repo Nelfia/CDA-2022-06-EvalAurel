@@ -21,7 +21,7 @@ class AnnonceListByUserRepository extends ServiceEntityRepository
         parent::__construct($registry, AnnonceListByUser::class);
     }
 
-    public function save(AnnonceListByUser $entity, bool $flush = false): void
+    public function save(AnnonceListByUser $entity, bool $flush = true): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class AnnonceListByUserRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(AnnonceListByUser $entity, bool $flush = false): void
+    public function remove(AnnonceListByUser $entity, bool $flush = true): void
     {
         $this->getEntityManager()->remove($entity);
 

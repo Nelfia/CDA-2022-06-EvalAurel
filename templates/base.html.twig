@@ -21,6 +21,19 @@
             {% include "components/navbar.html.twig" %}
         {% endblock %}
 
+        {% for message in app.flashes('Erreur') %}
+            <div class="alert alert-danger" role="alert">
+                <strong class="font-bold">Erreur!</strong>
+                <span class="block sm:inline">{{message}}</span>
+            </div>
+        {% endfor %}
+        {% for message in app.flashes('Succès') %}
+            <div class="alert alert-success">
+            <strong class="font-bold">Succès !</strong>
+                {{ message }}
+            </div>
+        {% endfor %}
+
         {% block body %}{% endblock %}
     </body>
 </html>

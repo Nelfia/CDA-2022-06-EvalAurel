@@ -21,7 +21,7 @@ class ComputerRepository extends ServiceEntityRepository
         parent::__construct($registry, Computer::class);
     }
 
-    public function save(Computer $entity, bool $flush = false): void
+    public function save(Computer $entity, bool $flush = true): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ComputerRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Computer $entity, bool $flush = false): void
+    public function remove(Computer $entity, bool $flush = true): void
     {
         $this->getEntityManager()->remove($entity);
 
