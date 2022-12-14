@@ -18,11 +18,20 @@
                             </div>
 
                             <div class="col-md-8">
-                                <div class="card-body">
+                                <div class="card-body pe-5">
                                     <h5 class="card-title">{{ computer.model }}</h5>
-                                    <p class="card-text">{{ computer.description|u.truncate(50, '...') }}<p class="card-text"></p>
-                                    <small class="text-muted">{{ computer.year }}</small>
-                                    <a href="{{path('app_computer_show', {'id' : computer.id}) }}" class="btn btn-primary mx-2 end">Détails</a></p> 
+                                    <p class="card-text">{{ computer.description|u.truncate(50, '...') }}</p>
+                                    <small class="text-muted">{{ computer.price|format_currency('EUR') }}</small>
+                                    <a href="{{path('app_computer_show', {'id' : computer.id}) }}" class="btn btn-primary mx-2 end">Détails</a>
+                                    {% if app.user %}
+                                        <a type="button" class="btn btn-outline-light w-30" href="{{path('app_computer_fav', {'id' : computer.id}) }}">
+                                            {% if computer.isUserFav(app.user) %}
+                                                <img class="favoris" src="/images_directory/etoile-pleine.png" alt="etoile pleine">
+                                            {% else %}
+                                                <img class="favoris" src="/images_directory/etoile-vide.png" alt="etoile vide">
+                                            {% endif %}
+                                        </a>
+                                    {% endif %} 
                                 </div>
                             </div>
                         </div>

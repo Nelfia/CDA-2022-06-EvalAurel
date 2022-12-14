@@ -8,7 +8,6 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Modèle</th>
                 <th>Description</th>
                 <th>Prix</th>
@@ -23,7 +22,6 @@
         <tbody>
         {% for computer in computers %}
             <tr>
-                <td>{{ computer.id }}</td>
                 <td>{{ computer.model }}</td>
                 <td>{{ computer.description }}</td>
                 <td>{{ computer.price }}</td>
@@ -33,8 +31,8 @@
                 <td>{{ computer.author.username }}</td>
                 <td>{{ computer.isVisible ? "YES":"NO" }}</td>
                 <td>
-                    <a href="{{ path('app_computer_show', {'id': computer.id}) }}">show</a>
-                    <a href="{{ path('app_computer_edit', {'id': computer.id}) }}">edit</a>
+                    <a class="btn btn-outline-dark text-center mx-4" href="{{ path('app_computer_show', {'id': computer.id}) }}">show</a>
+                    <a class="btn btn-outline-success text-center mx-4" href="{{ path('app_computer_edit', {'id': computer.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
@@ -45,5 +43,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_computer_new') }}">Create new</a>
+    <a class="btn btn-outline-success text-center mx-4" href="{{ path('app_computer_new') }}">Create new</a>
 {% endblock %}

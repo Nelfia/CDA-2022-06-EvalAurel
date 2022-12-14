@@ -34,7 +34,7 @@
                                 <h5 class="card-title">{{ computer.model }}</h5>
                                 <p class="card-text">{{ computer.description|u.truncate(50, '...') }}</p>
                                 <p class="card-text">
-                                    <small class="text-muted">{{ computer.year }}</small>
+                                    <small class="text-muted">{{ computer.price|format_currency('EUR') }}</small>
                                     <a href="{{path('app_computer_show', {'id' : computer.id}) }}" class="btn btn-primary mx-2 text-align-end">Détails</a>
                                 </p> 
                                 {% if app.user %}
